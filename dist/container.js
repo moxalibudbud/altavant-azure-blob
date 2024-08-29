@@ -10,11 +10,11 @@ class Container {
     listBlobsFlat() {
         return this.containerClient.listBlobsFlat();
     }
-    createBlobClient(blobItems) {
-        return blobItems.map(blobItem => this.containerClient.getBlobClient(blobItem.name));
-    }
     listByTag(query) {
         return this.containerClient.findBlobsByTags(query);
+    }
+    createBlobClients(blobs) {
+        return blobs.map(blob => this.containerClient.getBlobClient(blob.name));
     }
     blobClient(blobName) {
         return this.containerClient.getBlobClient(blobName);
