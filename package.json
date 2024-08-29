@@ -4,9 +4,6 @@
   "description": "Reads a list of data from common files such as .csv, .xlsx, .txt, .DAT and convert into JSON array.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist/**/*"
-  ],
   "scripts": {
     "watch": "nodemon --config nodemon.json",
     "build": "sh -c '[ -d dist ] && rm -R dist' && tsc --build tsconfig.prod.json",
@@ -15,8 +12,7 @@
   "dependencies": {
     "@azure/core-paging": "^1.6.2",
     "@azure/storage-blob": "^12.24.0",
-    "dotenv": "^16.4.5",
-    "xlsx": "^0.18.5"
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.8",
