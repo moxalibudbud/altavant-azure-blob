@@ -4,6 +4,10 @@
   "description": "Reads a list of data from common files such as .csv, .xlsx, .txt, .DAT and convert into JSON array.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "src/azure-blob",
+    "src/list-data-reader"
+  ],
   "scripts": {
     "watch": "nodemon --config nodemon.json",
     "build": "sh -c '[ -d dist ] && rm -R dist' && tsc --build tsconfig.prod.json",
