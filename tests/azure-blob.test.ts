@@ -1,15 +1,20 @@
 import 'dotenv/config';
-import { AZURE_BLOB_SERVICE_CLIENT_OPTIONS } from '@config';
 import { test, expect, describe } from '@jest/globals';
-import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
-import { Container } from '../src/azure-blob/container';
-import { serviceClient } from '../src/azure-blob/service-client';
-import { AzureBlobContainers } from '@lib/azure-blob/enums';
+import { BlobServiceClient, ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob';
+import { Container, serviceClient, AzureBlobContainers, ServiceClientCredentials } from '../src/azure-blob';
 
 describe('Azure Blob Storage library tests', () => {
   
   test('Service Client should pass with arguments', () => {
-    const client = serviceClient(AZURE_BLOB_SERVICE_CLIENT_OPTIONS)
+    const credentials: ServiceClientCredentials = {
+      credentials: new StorageSharedKeyCredential(
+        process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string,
+        process.env.AZURE_BLOB_STORAGE_ACCOUNT_KEY as string
+      ),
+      accountName: process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string
+    };
+
+    const client = serviceClient(credentials)
     expect(client).toBeInstanceOf(BlobServiceClient);
   });
 

@@ -1,2 +1,3 @@
-export * as container from './container';
-export * as enums from './enums';
+export * from './container';
+export * from './enums';
+export * from './service-client';
