@@ -10,3 +10,11 @@ export enum AzureBlobContainers {
   SIOCS_SOH = 'siocs-soh',
   WIP = 'wip'
 }
+
+export enum WIPContainerStatus {
+  TO_PROCESS = 'to_process',
+  WAITING_TO_PROCESS = 'waiting_to_process',
+  WIP = 'wip',
+  VALIDATED = 'validated',
+  REJECTED = 'rejected'
+}
