@@ -20,13 +20,8 @@ export class Container {
     return blobItems.map( blobItem => this.containerClient.getBlobClient(blobItem.name));
   }
 
-  listByTag(key: string, value: string) {
-    const filter = this.buildTagFilter(key, value);
-    return this.containerClient.findBlobsByTags(filter);
-  }
-
-  buildTagFilter(key: string, value: string): string {
-    return `${key}='${value}'`;
+  listByTag(query: string) {
+    return this.containerClient.findBlobsByTags(query);
   }
 
   blobClient(blobName: string): BlobClient {
