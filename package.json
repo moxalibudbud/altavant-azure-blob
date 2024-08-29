@@ -1,5 +1,5 @@
 {
-  "name": "list-data-reader",
+  "name": "al-shaya-utils",
   "version": "0.0.1",
   "description": "Reads a list of data from common files such as .csv, .xlsx, .txt, .DAT and convert into JSON array.",
   "main": "dist/index.js",
