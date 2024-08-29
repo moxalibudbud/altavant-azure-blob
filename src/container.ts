@@ -1,5 +1,5 @@
 
-import { BlobClient, BlobItem, BlobServiceClient, ContainerClient } from '@azure/storage-blob';
+import { BlobClient, BlobItem, BlobServiceClient, ContainerClient, FilterBlobItem } from '@azure/storage-blob';
 import { serviceClient } from './service-client';
 import { AzureBlobContainers } from './enums';
 
@@ -16,12 +16,12 @@ export class Container {
     return this.containerClient.listBlobsFlat();
   }
 
-  createBlobClient(blobItems: BlobItem[]): BlobClient[] {
-    return blobItems.map( blobItem => this.containerClient.getBlobClient(blobItem.name));
-  }
-
   listByTag(query: string) {
     return this.containerClient.findBlobsByTags(query);
+  }
+
+  createBlobClients(blobs: BlobItem[] | FilterBlobItem[]): BlobClient[] {
+    return blobs.map( blob => this.containerClient.getBlobClient(blob.name));
   }
 
   blobClient(blobName: string): BlobClient {
