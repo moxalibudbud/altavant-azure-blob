@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExcelReader = void 0;
 const tslib_1 = require("tslib");
-const file_1 = require("../utils/file");
 const fs_1 = tslib_1.__importDefault(require("fs"));
 const xlsx = tslib_1.__importStar(require("xlsx"));
+const file_reader_1 = require("../utils/file-reader");
 const helpers_1 = require("../utils/helpers");
-class ExcelReader extends file_1.File {
+class ExcelReader extends file_reader_1.FileReader {
     constructor(filepath) {
         super(filepath);
     }

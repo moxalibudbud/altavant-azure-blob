@@ -1,9 +1,9 @@
-import { File, FileReader } from '../utils/file';
+import { FileReader } from '../utils/file-reader';
 interface WorkBook {
     SheetNames: string[];
     Sheets: any;
 }
-export declare class ExcelReader extends File implements FileReader {
+export declare class ExcelReader extends FileReader {
     constructor(filepath: string);
     readContent(): Promise<any[]>;
     readFile(): Promise<WorkBook>;

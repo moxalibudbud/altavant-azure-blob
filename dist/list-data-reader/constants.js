@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SUPORTED_EXTENSIONS = exports.TXT = exports.JSON = exports.XLS = exports.XLSX = exports.DAT = exports.CSV = void 0;
+exports.SUPORTED_EXTENSIONS = exports.TXT = exports.JSON = exports.XLS = exports.XLSX = exports.OUT = exports.DAT = exports.CSV = void 0;
 exports.CSV = 'csv';
 exports.DAT = 'dat';
+exports.OUT = 'out';
 exports.XLSX = 'xlsx';
 exports.XLS = 'xls';
 exports.JSON = 'json';

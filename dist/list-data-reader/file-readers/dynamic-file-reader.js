@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DynamicFileReader = void 0;
 const tslib_1 = require("tslib");
-const file_1 = require("../utils/file");
+const file_reader_1 = require("../utils/file-reader");
 const file_reader_factory_1 = require("../utils/file-reader-factory");
-class DynamicFileReader extends file_1.File {
+class DynamicFileReader extends file_reader_1.FileReader {
     constructor(filepath) {
         super(filepath);
     }
@@ -13,6 +13,11 @@ class DynamicFileReader extends file_1.File {
         if (fileReader)
             return new fileReader(this.filepath);
         throw new Error(`File extension ${this.extension} is not supported!`);
+    }
+    readFile() {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return null;
+        });
     }
     readContent() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

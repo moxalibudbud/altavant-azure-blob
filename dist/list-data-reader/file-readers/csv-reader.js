@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CSVReader = void 0;
 const tslib_1 = require("tslib");
-const file_1 = require("../utils/file");
+const file_reader_1 = require("../utils/file-reader");
 const helpers_1 = require("../utils/helpers");
-class CSVReader extends file_1.File {
+class CSVReader extends file_reader_1.FileReader {
     constructor(filepath) {
         super(filepath);
     }

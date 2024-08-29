@@ -1,5 +1,5 @@
-import { File, FileReader } from '../utils/file';
-export declare class CSVReader extends File implements FileReader {
+import { FileReader } from '../utils/file-reader';
+export declare class CSVReader extends FileReader {
     constructor(filepath: string);
     readContent(): Promise<any[]>;
     readFile(): Promise<{

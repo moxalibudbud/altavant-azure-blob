@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "watch": "nodemon --config nodemon.json",
-    "build": "tsc --build tsconfig.prod.json",
+    "build": "sh -c '[ -d dist ] && rm -R dist' && tsc --build tsconfig.prod.json",
     "test": "jest"
   },
   "dependencies": {
