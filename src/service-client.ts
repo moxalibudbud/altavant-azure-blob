@@ -1,4 +1,4 @@
-import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
+import { BlobClient, BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
 
 export interface ServiceClientCredentials {
   credentials: StorageSharedKeyCredential;
@@ -18,6 +18,18 @@ function buildBlobServiceClient(options: ServiceClientCredentials) {
     `https://${options.accountName}.blob.core.windows.net`,
     options.credentials
   );
+}
+
+function buildBlobClient(blobUrl: string, options: ServiceClientCredentials) {
+  return new BlobClient(
+    blobUrl,
+    options.credentials
+  );
+}
+
+export function createBlobClient(blobUrl: string, options?: ServiceClientCredentials): BlobClient {
+  const blobClient = buildBlobClient(blobUrl, options ? options : DEFAULT_OPTIONS);
+  return blobClient;
 }
 
 export function serviceClient(options?: ServiceClientCredentials): BlobServiceClient {
