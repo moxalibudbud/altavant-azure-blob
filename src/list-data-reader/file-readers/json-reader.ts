@@ -1,9 +1,6 @@
-import {
-  File,
-  FileReader,
-} from '../utils/file';
+import { FileReader } from '../utils/file-reader';
 
-export class JSONReader extends File implements FileReader {
+export class JSONReader extends FileReader {
 
   constructor(filepath: string) {
     super(filepath);

@@ -1,10 +1,6 @@
-import {
-  File,
-  FileReader,
-} from '../utils/file';
-
 import fs from 'fs';
 import * as xlsx from 'xlsx';
+import { FileReader } from '../utils/file-reader';
 import { spreadSheetToJson } from '../utils/helpers';
 
 interface WorkBook {
@@ -12,7 +8,7 @@ interface WorkBook {
   Sheets: any;
 }
 
-export class ExcelReader extends File implements FileReader {
+export class ExcelReader extends FileReader {
 
   constructor(filepath: string) {
     super(filepath);

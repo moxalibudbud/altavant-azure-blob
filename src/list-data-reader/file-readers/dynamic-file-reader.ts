@@ -1,10 +1,7 @@
-import {
-  File,
-  FileReader,
-} from '../utils/file';
+import { FileReader } from '../utils/file-reader';
 import { fileReaderFactory } from '../utils/file-reader-factory';
 
-export class DynamicFileReader extends File {
+export class DynamicFileReader extends FileReader {
 
   constructor(filepath: string) {
     super(filepath);
@@ -16,6 +13,10 @@ export class DynamicFileReader extends File {
     if(fileReader) return new fileReader(this.filepath);
 
     throw new Error(`File extension ${this.extension} is not supported!`);
+  }
+  
+  async readFile() {
+    return null;
   }
 
   async readContent() {

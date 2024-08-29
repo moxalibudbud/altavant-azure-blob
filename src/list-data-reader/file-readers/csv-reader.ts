@@ -1,10 +1,7 @@
-import {
-  File,
-  FileReader,
-} from '../utils/file';
+import { FileReader } from '../utils/file-reader';
 import { spreadSheetToJson } from '../utils/helpers';
 
-export class CSVReader extends File implements FileReader {
+export class CSVReader extends FileReader {
 
   constructor(filepath: string) {
     super(filepath);

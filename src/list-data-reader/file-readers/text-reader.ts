@@ -1,9 +1,6 @@
-import {
-  File,
-  FileReader,
-} from '../utils/file';
+import { FileReader } from '../utils/file-reader';
 
-export class TextReader extends File implements FileReader {
+export class TextReader extends FileReader {
 
   constructor(filepath: string) {
     super(filepath);

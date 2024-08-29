@@ -1,5 +1,6 @@
 export const CSV = 'csv';
 export const DAT = 'dat';
+export const OUT = 'out';
 export const XLSX = 'xlsx';
 export const XLS = 'xls';
 export const JSON = 'json';
