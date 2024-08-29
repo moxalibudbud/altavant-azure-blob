@@ -1,7 +1,7 @@
 {
-  "name": "al-shaya-utils",
+  "name": "al-shaya-azure-blob",
   "version": "0.0.1",
-  "description": "Reads a list of data from common files such as .csv, .xlsx, .txt, .DAT and convert into JSON array.",
+  "description": "Extended functionality of @azure/storage-blob",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
