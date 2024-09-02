@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WIPContainerStatus = exports.AzureBlobContainers = void 0;
+exports.FileGeneratedStatus = exports.WIPContainerStatus = exports.AzureBlobContainers = void 0;
 var AzureBlobContainers;
 (function (AzureBlobContainers) {
     AzureBlobContainers["GOLD_ITEM_MASTER"] = "gold-item-master";
@@ -22,3 +22,8 @@ var WIPContainerStatus;
     WIPContainerStatus["VALIDATED"] = "validated";
     WIPContainerStatus["REJECTED"] = "rejected";
 })(WIPContainerStatus || (exports.WIPContainerStatus = WIPContainerStatus = {}));
+var FileGeneratedStatus;
+(function (FileGeneratedStatus) {
+    FileGeneratedStatus["GENERATED"] = "1";
+    FileGeneratedStatus["NOT_GENERATED"] = "0";
+})(FileGeneratedStatus || (exports.FileGeneratedStatus = FileGeneratedStatus = {}));
