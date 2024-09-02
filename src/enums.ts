@@ -18,3 +18,8 @@ export enum WIPContainerStatus {
   VALIDATED = 'validated',
   REJECTED = 'rejected'
 }
+
+export enum FileGeneratedStatus {
+  GENERATED = '1',
+  NOT_GENERATED = '0',
+}
