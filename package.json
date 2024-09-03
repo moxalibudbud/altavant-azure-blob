@@ -8,9 +8,11 @@
     "watch": "nodemon --config nodemon.json",
     "build": "sh -c '[ -d dist ] && rm -R dist' && tsc --build tsconfig.prod.json",
     "push": "pnpm build && git add . && git commit -m 'build' && git push",
-    "test": "jest"
+    "test": "jest",
+    "updatemods": "pnpm up @alshaya/list-data-reader --latest"
   },
   "dependencies": {
+    "@alshaya/list-data-reader": "gitlab:altavant-consulting/al-shaya-list-data-reader#main",
     "@azure/core-paging": "^1.6.2",
     "@azure/storage-blob": "^12.24.0",
     "dotenv": "^16.4.5"
