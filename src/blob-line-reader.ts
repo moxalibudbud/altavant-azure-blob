@@ -15,7 +15,7 @@ export interface ReadlineInterfaceLineHandler {
   (...args: any): void;
 }
 
-export abstract class FileReader {
+export abstract class BlobLineReader {
 
   file: File;
   readlineInterface?: ReadLine;
@@ -24,16 +24,8 @@ export abstract class FileReader {
     this.file = new File(url);
   }
 
-  get filepath(): string {
-    return this.file.filepath;
-  }
-
   get extension(): string {
     return this.file.extension;
-  }
-
-  get directory(): string {
-    return this.file.directory;
   }
 
   get filename(): string {
@@ -42,10 +34,21 @@ export abstract class FileReader {
 
   createReadlineInterface() {
     this.readlineInterface = readline.createInterface({
-      input: fs.createReadStream(this.filepath),
+      input: fs.createReadStream(this.filename),
       output: process.stdout,
       crlfDelay: Infinity
     });
+  }
+
+  /**
+   * Clean up previous listeners if they exist to avoid memory leaks or duplicate event handling
+   * @returns void
+   */
+  cleanUpPreviousListeners(): void {
+    if(!this.readlineInterface) return;
+
+    this.readlineInterface.removeAllListeners('line');
+    this.readlineInterface.removeAllListeners('close');
   }
 
   readlineInterfacePromise(
@@ -55,11 +58,16 @@ export abstract class FileReader {
     if(!this.readlineInterface) {
       this.createReadlineInterface();
     }
+
+    this.cleanUpPreviousListeners();
     
     return new Promise((resolve, reject) => {
       try {
         this.readlineInterface?.on('line', onLineHandler);
-        this.readlineInterface?.on('close', () => onCloseHandler(resolve));
+        this.readlineInterface?.on('close', () => {
+          onCloseHandler(resolve);
+          this.readlineInterface?.close(); // Close the readline interface after the file is fully processed
+        });
       } catch (e) {
         reject(e);
       }
@@ -67,5 +75,5 @@ export abstract class FileReader {
   }
   
   abstract readContent(): Promise<any[]> | undefined;
-  abstract readFile(): Promise<any> | undefined;
+  abstract readBlob(): Promise<any> | undefined;
 }
