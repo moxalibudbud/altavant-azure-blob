@@ -88,6 +88,5 @@ export abstract class BlobLineReader {
     });
   }
   
-  abstract readContent(): Promise<any[]> | undefined;
   abstract readBlob(): Promise<any> | undefined;
 }
