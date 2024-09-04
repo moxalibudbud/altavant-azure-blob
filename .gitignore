@@ -40,4 +40,4 @@ package-lock.json
 .history
 
 # Unnecessary files, folders
-z/
+.env
