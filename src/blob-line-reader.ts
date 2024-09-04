@@ -1,6 +1,7 @@
-import fs from 'fs';
-import readline, { ReadLine } from 'readline';
+import readline from 'readline';
 import { File } from '@alshaya/list-data-reader';
+import { createBlobClient } from './service-client';
+import { BlobClient } from '@azure/storage-blob';
 
 
 export interface ReadlineInterfaceCloseHandler {
@@ -18,10 +19,14 @@ export interface ReadlineInterfaceLineHandler {
 export abstract class BlobLineReader {
 
   file: File;
-  readlineInterface?: ReadLine;
+  readlineInterface?: readline.Interface;
 
   constructor(url: string) {
     this.file = new File(url);
+  }
+
+  get url(): string {
+    return this.file.filepath;
   }
 
   get extension(): string {
@@ -32,11 +37,23 @@ export abstract class BlobLineReader {
     return this.file.filename;
   }
 
-  createReadlineInterface() {
+  get sourceBlobClient(): BlobClient {
+    return createBlobClient(this.url);
+  }
+
+  async getReadableStream() {
+    const downloadBlockBlobResponse = await this.sourceBlobClient.download(0);
+    return downloadBlockBlobResponse.readableStreamBody;
+  }
+
+  async createReadlineInterface() {
+    const readableStream = await this.getReadableStream();
+    if(!readableStream) return;
+    
     this.readlineInterface = readline.createInterface({
-      input: fs.createReadStream(this.filename),
-      output: process.stdout,
-      crlfDelay: Infinity
+      input: readableStream,
+      crlfDelay: Infinity,
+      terminal: false
     });
   }
 
@@ -51,12 +68,12 @@ export abstract class BlobLineReader {
     this.readlineInterface.removeAllListeners('close');
   }
 
-  readlineInterfacePromise(
+  async readlineInterfacePromise(
     onLineHandler: ReadlineInterfaceLineHandler,
     onCloseHandler: ReadlineInterfaceCloseHandler
   ): Promise<any> {
     if(!this.readlineInterface) {
-      this.createReadlineInterface();
+      await this.createReadlineInterface();
     }
 
     this.cleanUpPreviousListeners();
@@ -64,10 +81,7 @@ export abstract class BlobLineReader {
     return new Promise((resolve, reject) => {
       try {
         this.readlineInterface?.on('line', onLineHandler);
-        this.readlineInterface?.on('close', () => {
-          onCloseHandler(resolve);
-          this.readlineInterface?.close(); // Close the readline interface after the file is fully processed
-        });
+        this.readlineInterface?.on('close', () => onCloseHandler(resolve));
       } catch (e) {
         reject(e);
       }
