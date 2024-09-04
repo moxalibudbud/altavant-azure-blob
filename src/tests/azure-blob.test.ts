@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { test, expect, describe } from '@jest/globals';
 import { BlobServiceClient, ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob';
-import { Container, serviceClient, AzureBlobContainers, ServiceClientCredentials } from '../src';
+import { Container, serviceClient, AzureBlobContainers, ServiceClientCredentials } from '..';
 
 describe('Azure Blob Storage library tests', () => {
   

@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { test, expect, describe, jest } from '@jest/globals';
 import readline from 'readline';
 import { Readable } from 'stream'; 
-import { BlobLineReader } from '../src/blob-line-reader';
+import { BlobLineReader } from '../blob-line-reader';
 
 const BLOB_URL = 'https://alshayastaging.blob.core.windows.net/wip/item-master.csv';
   
