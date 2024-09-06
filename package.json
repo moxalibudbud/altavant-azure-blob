@@ -1,5 +1,5 @@
 {
-  "name": "al-shaya-azure-blob",
+  "name": "altavant-azure-blob",
   "version": "0.0.1",
   "description": "Extended functionality of @azure/storage-blob",
   "main": "dist/index.js",
@@ -12,9 +12,9 @@
     "updatemods": "pnpm up @alshaya/list-data-reader --latest"
   },
   "dependencies": {
-    "@alshaya/list-data-reader": "gitlab:altavant-consulting/al-shaya-list-data-reader#main",
     "@azure/core-paging": "^1.6.2",
     "@azure/storage-blob": "^12.24.0",
+    "list-data-reader": "github:moxalibudbud/list-data-reader#main",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {

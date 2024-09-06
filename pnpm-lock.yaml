@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@alshaya/list-data-reader':
-        specifier: gitlab:altavant-consulting/al-shaya-list-data-reader#main
-        version: al-shaya-list-data-reader@git+https://git@gitlab.com:altavant-consulting/al-shaya-list-data-reader.git#936c436b871e90fe01bbba37bbd605bd8f137883(tslib@2.6.3)
       '@azure/core-paging':
         specifier: ^1.6.2
         version: 1.6.2
@@ -20,6 +17,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      list-data-reader:
+        specifier: github:moxalibudbud/list-data-reader#main
+        version: https://codeload.github.com/moxalibudbud/list-data-reader/tar.gz/2beb220c7727892e4515e96f09ccfabd3e023f06(tslib@2.6.3)
     devDependencies:
       '@babel/cli':
         specifier: ^7.24.8
@@ -891,12 +891,6 @@ packages:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
     engines: {node: '>= 14'}
 
-  al-shaya-list-data-reader@git+https://git@gitlab.com:altavant-consulting/al-shaya-list-data-reader.git#936c436b871e90fe01bbba37bbd605bd8f137883:
-    resolution: {commit: 936c436b871e90fe01bbba37bbd605bd8f137883, repo: git@gitlab.com:altavant-consulting/al-shaya-list-data-reader.git, type: git}
-    version: 0.0.1
-    peerDependencies:
-      tslib: ^2.6.3
-
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
@@ -1540,6 +1534,12 @@ packages:
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+
+  list-data-reader@https://codeload.github.com/moxalibudbud/list-data-reader/tar.gz/2beb220c7727892e4515e96f09ccfabd3e023f06:
+    resolution: {tarball: https://codeload.github.com/moxalibudbud/list-data-reader/tar.gz/2beb220c7727892e4515e96f09ccfabd3e023f06}
+    version: 0.0.1
+    peerDependencies:
+      tslib: ^2.6.3
 
   locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
@@ -3181,12 +3181,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  al-shaya-list-data-reader@git+https://git@gitlab.com:altavant-consulting/al-shaya-list-data-reader.git#936c436b871e90fe01bbba37bbd605bd8f137883(tslib@2.6.3):
-    dependencies:
-      dotenv: 16.4.5
-      tslib: 2.6.3
-      xlsx: 0.18.5
-
   ansi-escapes@4.3.2:
     dependencies:
       type-fest: 0.21.3
@@ -3997,6 +3991,11 @@ snapshots:
   leven@3.1.0: {}
 
   lines-and-columns@1.2.4: {}
+
+  list-data-reader@https://codeload.github.com/moxalibudbud/list-data-reader/tar.gz/2beb220c7727892e4515e96f09ccfabd3e023f06(tslib@2.6.3):
+    dependencies:
+      tslib: 2.6.3
+      xlsx: 0.18.5
 
   locate-path@5.0.0:
     dependencies:

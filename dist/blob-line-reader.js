@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlobLineReader = void 0;
 const tslib_1 = require("tslib");
 const readline_1 = tslib_1.__importDefault(require("readline"));
-const list_data_reader_1 = require("@alshaya/list-data-reader");
+const list_data_reader_1 = require("list-data-reader");
 const service_client_1 = require("./service-client");
 class BlobLineReader {
     constructor(url) {

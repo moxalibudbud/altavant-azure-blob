@@ -1,5 +1,5 @@
 import readline from 'readline';
-import { File } from '@alshaya/list-data-reader';
+import { File } from 'list-data-reader';
 import { createBlobClient } from './service-client';
 import { BlobClient } from '@azure/storage-blob';
 
