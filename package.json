@@ -33,5 +33,15 @@
   },
   "peerDependencies": {
     "tslib": "^2.6.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./blob": "./dist/blob.js",
+    "./container": "./dist/container.js",
+    "./enums": "./dist/enums.js",
+    "./service-client": "./dist/service-client.js",
+    "./blob-line-reader": "./dist/blob-line-reader.js"
   }
 }
