@@ -34,9 +34,6 @@
   "peerDependencies": {
     "tslib": "^2.6.3"
   },
-  "files": [
-    "dist"
-  ],
   "exports": {
     "./blob": "./dist/blob.js",
     "./container": "./dist/container.js",
