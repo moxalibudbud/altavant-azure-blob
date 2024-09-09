@@ -1,38 +1,47 @@
-import 'dotenv/config';
-import { test, expect, describe, jest } from '@jest/globals';
+import { test, expect, describe, jest, beforeAll, beforeEach } from '@jest/globals';
 import readline from 'readline';
 import { Readable } from 'stream'; 
-import { BlobLineReader } from '../blob-line-reader';
 
 const BLOB_URL = 'https://alshayastaging.blob.core.windows.net/wip/item-master.csv';
-  
-class MockReader extends BlobLineReader {
-  constructor() {
-    super(BLOB_URL);
-  }
-
-  async readContent() {
-    try {
-      const data = await this.readBlob();
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async readBlob() {
-    const arr: string[] = [];
-    const handleOnLine = (chunk: string) => {
-      arr.push(chunk);
-    };
-    const handleOnClose = (resolve: Function) => resolve(arr);
-
-    return this.readlineInterfacePromise(handleOnLine, handleOnClose);
-  }
-}
 
 describe('Azure Blob Line Reader tests', () => {
-  const mockReader = new MockReader();
+  let mockReader: any;
+
+  beforeEach(async () => {
+    process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME = 'testaccount';
+    process.env.AZURE_BLOB_STORAGE_ACCOUNT_KEY = 'xJ/JhgA6Fq000x06IvHPZ47j7v00000/Y7XGDEHO8ra1ZCMXNkf2CkLPjZ36hQR80sHA1xZ/FpOA+AStP9bJXX==';
+  
+    const { BlobLineReader } = await import('../blob-line-reader');
+  
+    class MockReader extends BlobLineReader {
+      constructor() {
+        super(BLOB_URL);
+      }
+    
+      async readContent() {
+        try {
+          const data = await this.readBlob();
+          return data;
+        } catch (error) {
+          throw error;
+        }
+      }
+    
+      async readBlob() {
+        const arr: string[] = [];
+        const handleOnLine = (chunk: string) => {
+          arr.push(chunk);
+        };
+        const handleOnClose = (resolve: Function) => resolve(arr);
+    
+        return this.readlineInterfacePromise(handleOnLine, handleOnClose);
+      }
+    }
+
+
+    mockReader = new MockReader();
+  });
+
 
   test('getters should pass', () => {
     expect(mockReader.extension).toBe('csv');
@@ -44,7 +53,14 @@ describe('Azure Blob Line Reader tests', () => {
   });
 
   test('readlineInterface should pass', async () => {
-    const reader = new MockReader();
+    const reader = mockReader;
+
+    // Mock getReadableSteream
+    const mockStream = new Readable();
+    mockStream.push('line1\nline2\nline3\n'); 
+    mockStream.push(null);
+    jest.spyOn(reader, 'getReadableStream').mockResolvedValue(mockStream);
+
     await reader.createReadlineInterface();
     reader.cleanUpPreviousListeners();
 
@@ -56,7 +72,7 @@ describe('Azure Blob Line Reader tests', () => {
   });
 
   test('readlineInterface should call removeAllListeners on initialization and close on end of input stream', async () => {
-    const reader = new MockReader();
+    const reader = mockReader;
     
     // Mock getReadableSteream
     const mockStream = new Readable();

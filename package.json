@@ -9,6 +9,8 @@
     "build": "sh -c '[ -d dist ] && rm -R dist' && tsc --build tsconfig.prod.json",
     "push": "pnpm build && git add . && git commit -m 'build' && git push",
     "test": "jest",
+    "test:prod": "jest --testPathPattern=dist/tests --detectOpenHandles",
+    "test:dev": "jest --testPathPattern=src/tests --detectOpenHandles",
     "updatemods": "pnpm up @alshaya/list-data-reader --latest"
   },
   "dependencies": {

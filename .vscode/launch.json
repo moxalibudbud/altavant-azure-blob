@@ -50,6 +50,7 @@
     {
       "type": "node",
       "request": "launch",
+      "runtimeVersion": "20",
       "name": "TS Jest Debugger",
       "program": "${workspaceFolder}/node_modules/jest/bin/jest",
       "args": [

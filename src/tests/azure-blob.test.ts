@@ -1,36 +1,22 @@
-import 'dotenv/config';
-import { jest, test, expect, describe } from '@jest/globals';
+import { test, expect, describe, beforeEach } from '@jest/globals';
 import { BlobServiceClient, ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob';
-import { ServiceClientCredentials, AzureBlobContainers } from '../index';
-import { serviceClient } from '../service-client';
-import { Container } from '../container';
-
-// Mocking the @azure/storage-blob module
-jest.mock('@azure/storage-blob', () => ({
-  BlobServiceClient: jest.fn(),
-  ContainerClient: jest.fn(),
-  StorageSharedKeyCredential: jest.fn(),
-}));
-
-jest.mock('../service-client', () => ({
-  serviceClient: jest.fn().mockImplementation(() => {
-    return new BlobServiceClient('url');
-  })
-}));
-
-jest.mock('../Container', () => ({
-  Container: jest.fn().mockImplementation(() => ({
-    serviceClient: new BlobServiceClient('url'),
-    containerClient: new ContainerClient('url'),
-  }))
-}));
+import { AzureBlobContainers } from '../enums';
 
 describe('Azure Blob Storage library tests', () => {
+  let ServiceClientModule: any;
+
+  beforeEach(async () => {
+    process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME = 'testaccount';
+    process.env.AZURE_BLOB_STORAGE_ACCOUNT_KEY = 'xJ/JhgA6Fq000x06IvHPZ47j7v00000/Y7XGDEHO8ra1ZCMXNkf2CkLPjZ36hQR80sHA1xZ/FpOA+AStP9bJXX==';
+
+    ServiceClientModule = await import('../service-client');
+  });
   
   test('Service Client should pass with arguments', () => {
-    const AZURE_BLOB_STORAGE_ACCOUNT_NAME = 'mockAccountName';
-    const AZURE_BLOB_STORAGE_ACCOUNT_KEY = 'mockAccountKey';
-    const credentials: ServiceClientCredentials = {
+    const { serviceClient } = ServiceClientModule;
+    const AZURE_BLOB_STORAGE_ACCOUNT_NAME = process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string;
+    const AZURE_BLOB_STORAGE_ACCOUNT_KEY = process.env.AZURE_BLOB_STORAGE_ACCOUNT_KEY as string;
+    const credentials = {
       credentials: new StorageSharedKeyCredential(AZURE_BLOB_STORAGE_ACCOUNT_NAME, AZURE_BLOB_STORAGE_ACCOUNT_KEY),
       accountName: AZURE_BLOB_STORAGE_ACCOUNT_NAME,
     };
@@ -40,11 +26,13 @@ describe('Azure Blob Storage library tests', () => {
   });
 
   test('Service Client should pass without arguments', () => {
-    const client = serviceClient()
+    const { serviceClient } = ServiceClientModule;
+    const client = serviceClient();
     expect(client).toBeInstanceOf(BlobServiceClient);
   });
 
-  test('Container object should pass correct property instances ', () => {
+  test('Container object should pass correct property instances ', async () => {
+    const { Container } = await import('../container');
     const containerClient = new Container(AzureBlobContainers.SIOCS_SOH);
     expect(containerClient.serviceClient).toBeInstanceOf(BlobServiceClient);
     expect(containerClient.containerClient).toBeInstanceOf(ContainerClient);
