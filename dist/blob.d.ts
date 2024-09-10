@@ -1,6 +1,6 @@
-import { BlobClient, ContainerClient } from '@azure/storage-blob';
+import { BlobClient } from '@azure/storage-blob';
 export declare class Blob {
     blobClient: BlobClient;
-    constructor(blobName: string, containerClient: ContainerClient);
+    constructor(blobUrl: string);
     delete(): Promise<import("@azure/storage-blob").BlobDeleteResponse>;
 }

@@ -1,12 +1,13 @@
 
-import { BlobClient, ContainerClient } from '@azure/storage-blob';
+import { BlobClient } from '@azure/storage-blob';
+import { createBlobClient } from './service-client';
 
 export class Blob {
   
   blobClient: BlobClient;
 
-  constructor(blobName: string, containerClient: ContainerClient) {
-    this.blobClient = containerClient.getBlobClient(blobName);
+  constructor(blobUrl: string) {
+    this.blobClient = createBlobClient(blobUrl);
   }
 
   async delete() {

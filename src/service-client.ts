@@ -5,13 +5,17 @@ export interface ServiceClientCredentials {
   accountName: string;
 }
 
-const DEFAULT_OPTIONS: ServiceClientCredentials = {
-  credentials: new StorageSharedKeyCredential(
-    process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string,
-    process.env.AZURE_BLOB_STORAGE_ACCOUNT_KEY as string
-  ),
-  accountName: process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string
-};
+export function getDefaultOptions(): ServiceClientCredentials {
+  const options = {
+    credentials: new StorageSharedKeyCredential(
+      process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string,
+      process.env.AZURE_BLOB_STORAGE_ACCOUNT_KEY as string
+    ),
+    accountName: process.env.AZURE_BLOB_STORAGE_ACCOUNT_NAME as string
+  };
+
+  return options;
+}
 
 function buildBlobServiceClient(options: ServiceClientCredentials) {
   return new BlobServiceClient(
@@ -28,11 +32,11 @@ function buildBlobClient(blobUrl: string, options: ServiceClientCredentials) {
 }
 
 export function createBlobClient(blobUrl: string, options?: ServiceClientCredentials): BlobClient {
-  const blobClient = buildBlobClient(blobUrl, options ? options : DEFAULT_OPTIONS);
+  const blobClient = buildBlobClient(blobUrl, options ? options : getDefaultOptions());
   return blobClient;
 }
 
 export function serviceClient(options?: ServiceClientCredentials): BlobServiceClient {
-  const serviceClient = buildBlobServiceClient(options ? options : DEFAULT_OPTIONS);
+  const serviceClient = buildBlobServiceClient(options ? options : getDefaultOptions());
   return serviceClient;
 }
