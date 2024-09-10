@@ -5,3 +5,4 @@ tslib_1.__exportStar(require("./blob"), exports);
 tslib_1.__exportStar(require("./container"), exports);
 tslib_1.__exportStar(require("./enums"), exports);
 tslib_1.__exportStar(require("./blob-line-reader"), exports);
+tslib_1.__exportStar(require("./blob-client"), exports);

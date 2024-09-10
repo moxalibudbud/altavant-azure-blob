@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDefaultOptions = getDefaultOptions;
-exports.createBlobClient = createBlobClient;
 exports.serviceClient = serviceClient;
 const storage_blob_1 = require("@azure/storage-blob");
 function getDefaultOptions() {
@@ -16,10 +15,6 @@ function buildBlobServiceClient(options) {
 }
 function buildBlobClient(blobUrl, options) {
     return new storage_blob_1.BlobClient(blobUrl, options.credentials);
-}
-function createBlobClient(blobUrl, options) {
-    const blobClient = buildBlobClient(blobUrl, options ? options : getDefaultOptions());
-    return blobClient;
 }
 function serviceClient(options) {
     const serviceClient = buildBlobServiceClient(options ? options : getDefaultOptions());

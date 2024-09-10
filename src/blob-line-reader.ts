@@ -1,6 +1,6 @@
 import readline from 'readline';
 import { File } from 'list-data-reader';
-import { createBlobClient } from './service-client';
+import { createBlobClient } from './blob-client';
 import { BlobClient } from '@azure/storage-blob';
 
 

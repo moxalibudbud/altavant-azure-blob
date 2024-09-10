@@ -31,11 +31,6 @@ function buildBlobClient(blobUrl: string, options: ServiceClientCredentials) {
   );
 }
 
-export function createBlobClient(blobUrl: string, options?: ServiceClientCredentials): BlobClient {
-  const blobClient = buildBlobClient(blobUrl, options ? options : getDefaultOptions());
-  return blobClient;
-}
-
 export function serviceClient(options?: ServiceClientCredentials): BlobServiceClient {
   const serviceClient = buildBlobServiceClient(options ? options : getDefaultOptions());
   return serviceClient;

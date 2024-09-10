@@ -4,7 +4,7 @@ exports.BlobLineReader = void 0;
 const tslib_1 = require("tslib");
 const readline_1 = tslib_1.__importDefault(require("readline"));
 const list_data_reader_1 = require("list-data-reader");
-const service_client_1 = require("./service-client");
+const blob_client_1 = require("./blob-client");
 class BlobLineReader {
     constructor(url) {
         this.file = new list_data_reader_1.File(url);
@@ -19,7 +19,7 @@ class BlobLineReader {
         return this.file.filename;
     }
     get sourceBlobClient() {
-        return (0, service_client_1.createBlobClient)(this.url);
+        return (0, blob_client_1.createBlobClient)(this.url);
     }
     getReadableStream() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
