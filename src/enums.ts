@@ -25,4 +25,5 @@ export enum WIPContainerStatus {
 export enum FileGeneratedStatus {
   GENERATED = '1',
   NOT_GENERATED = '0',
+  LOCALLY = '2'
 }

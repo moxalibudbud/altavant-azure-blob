@@ -22,5 +22,6 @@ export declare enum WIPContainerStatus {
 }
 export declare enum FileGeneratedStatus {
     GENERATED = "1",
-    NOT_GENERATED = "0"
+    NOT_GENERATED = "0",
+    LOCALLY = "2"
 }

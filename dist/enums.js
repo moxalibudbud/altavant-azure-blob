@@ -29,4 +29,5 @@ var FileGeneratedStatus;
 (function (FileGeneratedStatus) {
     FileGeneratedStatus["GENERATED"] = "1";
     FileGeneratedStatus["NOT_GENERATED"] = "0";
+    FileGeneratedStatus["LOCALLY"] = "2";
 })(FileGeneratedStatus || (exports.FileGeneratedStatus = FileGeneratedStatus = {}));
