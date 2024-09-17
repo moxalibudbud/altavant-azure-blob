@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FileGeneratedStatus = exports.WIPContainerStatus = exports.AzureBlobContainers = void 0;
+exports.DatascanSentStatus = exports.FileGeneratedStatus = exports.WIPContainerStatus = exports.AzureBlobContainers = void 0;
 var AzureBlobContainers;
 (function (AzureBlobContainers) {
     AzureBlobContainers["DATASCAN_ITEM_MASTER"] = "datascan-item-master";
@@ -31,3 +31,8 @@ var FileGeneratedStatus;
     FileGeneratedStatus["NOT_GENERATED"] = "0";
     FileGeneratedStatus["LOCALLY"] = "2";
 })(FileGeneratedStatus || (exports.FileGeneratedStatus = FileGeneratedStatus = {}));
+var DatascanSentStatus;
+(function (DatascanSentStatus) {
+    DatascanSentStatus["TRUE"] = "1";
+    DatascanSentStatus["FALSE"] = "0";
+})(DatascanSentStatus || (exports.DatascanSentStatus = DatascanSentStatus = {}));

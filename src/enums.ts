@@ -27,3 +27,8 @@ export enum FileGeneratedStatus {
   NOT_GENERATED = '0',
   LOCALLY = '2'
 }
+
+export enum DatascanSentStatus {
+  TRUE = '1',
+  FALSE = '0'
+}
