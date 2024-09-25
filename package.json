@@ -4,6 +4,9 @@
   "description": "Extended functionality of @azure/storage-blob",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "./enums": "./dist/enums"
+  },
   "scripts": {
     "watch": "nodemon --config nodemon.json",
     "build": "sh -c '[ -d dist ] && rm -R dist' && tsc --build tsconfig.prod.json",
