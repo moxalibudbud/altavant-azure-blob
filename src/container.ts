@@ -8,7 +8,7 @@ export class Container {
   serviceClient: BlobServiceClient = serviceClient();
   containerClient: ContainerClient;
 
-  constructor(containerName: AzureBlobContainers) {
+  constructor(containerName: string) {
     this.containerClient = this.serviceClient.getContainerClient(containerName);
   }
 
