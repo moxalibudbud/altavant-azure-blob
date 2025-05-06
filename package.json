@@ -1,6 +1,6 @@
 {
   "name": "@altavant/azure-blob",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "Simple wrapper of @azure/storage-blob",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
